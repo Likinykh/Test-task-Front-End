@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Notes</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  <link href='main.css'rel='stylesheet' />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
+  </head>
+
+  <body>
+
+    <div class='container'>
+      <div class='row'>
+        <div class='col-12'>
+          <div class='notes'id='nots'>
+
+            <div class='notes-item'>
+              <ul class='menu'>
+                <li class='menu-item'@click="home = true , all_n=false"><i class="fas fa-home"></i></li>
+                <li class='menu-item'@click="all_n = true , home=false"><i class="fas fa-comment-dots"></i></li>
+              </ul>
+            </div>
+            <div class='notes-own'>
+
+              <div class='new-notes'v-if='home === true'>
+                <textarea class='t-new'v-model='message'></textarea>
+                <div class='send'>
+                  <button class='btn btn-success send'@click='addMessage()'>Додати Замiтку</button>
+                </div>
+              </div>
+
+              <div class='all-notes'v-if='all_n === true'>
+                <ul class='list-group'>
+                <li class='list-group-item all-notes-item notates'v-for = "(i,index) in all_notes">{{i}} <i class="fas fa-edit"@click="all_n=false , home=false , edit=true , indx = index,val=all_notes[index]"></i> <input type = 'radio' class='rad' @click='editRadio(index),del=true' /> </li>
+                </ul>
+
+                <button class='btn btn-danger bjh'v-if='del==true'@click='deli()'>Удалить</button>
+              </div>
+
+              <div class='new-notes'v-if='edit === true'>
+                <textarea class='t-new'v-model='editMessage'></textarea>
+                <div class='send'>
+                  <button class='btn btn-success send'@click='editMsg()'>Додати Замiтку</button>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="crossorigin="anonymous"></script>
+    <script src='script.js'></script>
+    </body>
+</html>
